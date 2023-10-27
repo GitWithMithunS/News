@@ -87,12 +87,14 @@ export default class News extends Component {
           {!this.state.loading && this.state.articles.map((element)=>{
             // console.log(element)
             return <div className="newsitemcontainer">
-              <Newsitem title={element.title?element.title.slice(0):''} 
-                        description={element.description?element.description.slice(0,95):''} 
+              <Newsitem title={element.title?element.title.slice(0):'Title is not mentioned by the Publisher'} 
+                        description={element.description?element.description:'Their is no description provided by the news channel or author'} 
                         imgurl={element.urlToImage?element.urlToImage:'https://ichef.bbci.co.uk/news/1024/branded_news/1809A/production/_131485489_gettyimages-1636801385-1.jpg'}  
                         newsurl={element.url}
-                        author={element.source.name}
-                        content= {element.content}/>
+                        channel={element.source.name}
+                        author={element.author?element.author:'Unknown'}
+                        date={element.publishedAt}
+                        content= {element.content?element.content:'Their is no content provided by the publisher.For more infomation try visiting the main website from button given in our website Newsflix'}/>
             </div>
             })}
           </div>

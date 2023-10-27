@@ -1,41 +1,29 @@
 import React, { Component } from 'react'
 import './Newsitem.css'
-import Single from '../Singlenews/Single'
 import { Link } from 'react-router-dom'
 
 
 export default class Newsitem extends Component {
-
-  constructor(){
-    super();
-    this.state={
-        readme : false
-     }
-  }
-
-  componentDidMount() {
-    window.globalVariable = [{
-      newstitle:this.props.title,
-    }]
-    // console.log(window.globalVariable)
-  }
-  readmoreclicked = () => {
-    let {title,description,imgurl,newsurl,author,cont} = this.props 
-    this.state = [{
-      newsurl : `${newsurl}`,
+  
+  thisState = () => {   
+      let {title,description,imgurl,newsurl,author,channel,content,date} = this.props
+     
+      const data = {newsurl : `${newsurl}`,
       newstitle : `${title}`,
       newsimg : `${imgurl}`,
       newsdec : `${description}`,
-      newscontent : `${cont}`,
-      author : `${author}`,
-    }]
-    const thisState = () => {   
-      this.setState({data:this.state});  
+      newscontent : `${content}`,
+      author:`${author}`,
+      date : `${date}`,
+      channel : `${channel}`,  
          };
+         localStorage.setItem('newsData' , JSON.stringify(data))
+        }
     
-  }
+        
   render() {
-    let {title,description,imgurl,newsurl,author,cont} = this.props               //destructuring concept(javascript)
+
+    let {title,description,imgurl,newsurl,author,channel,date} = this.props               //destructuring concept(javascript)
  
   
   
@@ -43,27 +31,54 @@ export default class Newsitem extends Component {
   
   return (
       <>
-        {!this.state.readme &&
+    
         <div className="card" style={{width: '20rem'}}>
           <img src={imgurl} className="card-img-top" alt="..."/>
             <div className="card-body">
               <h5 className="card-title"><strong>{title}</strong></h5>        {/*  after destructuring title and description passing it as props here */}
-              <p className="card-text">{description}...</p>
-              {/* <div className="content">
-                <span>{content}...</span>
-              </div> */}
-              <div className="button">
-                <button onClick={this.state} className="btn btn-primary read ">
-                <Link to='/single' target='blank' >Read More</Link></button>
-              <Link to={newsurl} target='blank' className="btn btn-primary read ">{author}</Link>
+              <p className="card-text">{description.slice(0,95)}...</p>
+              
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger morezindex">
+              {channel}</span>
+
+              <div className="endcomponents">
+                <p className="card-text"><small className="text-body-secondary smalltxt">By {author} on {new Date(date).toDateString()},{new Date(date).toTimeString().slice(0,12)} </small></p>
+                <div className="button">
+                  <button onClick={this.thisState} className="btn btn-primary read ">
+                  <Link to='/single' target='blank' >Read More</Link></button>
+                  <Link to={newsurl} target='blank' className="btn btn-primary read ">{channel}</Link>
+                </div>
               </div>
             </div>
         </div>
-        }
-  
-
+      
+    
       </>
-
     )
   }
 }
+
+
+
+      // componentDidMount() {
+      //   window.globalVariable = [{
+      //     newstitle:this.props.title,
+      //   }]
+      //   // console.log(window.globalVariable)
+      // }
+      // readmoreclicked = () => {
+      //   let {title,description,imgurl,newsurl,author,cont} = this.props 
+      //   this.state={data:""}
+      
+    
+        // thisState = () => {   
+        //   let {title,description,imgurl,newsurl,author,cont} = this.props
+        //   this.setState(
+        //     {data : {newsurl : `${newsurl}`,
+        //   newstitle : `${title}`,
+        //   newsimg : `${imgurl}`,
+        //   newsdec : `${description}`,
+        //   newscontent : `${cont}`,
+        //   author : `${author}`,}});  
+        //      };
+        

@@ -1,11 +1,9 @@
 
 .card-text{
     font-weight:400;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
-/* .content{
-    font-size: smaller;
-} */
+
 .button{
     display:flex ;
     justify-content: space-between;
@@ -50,4 +48,16 @@ box-shadow: 10px 10px 5px 1px rgba(243,207,135,1);
   }
 .btn.btn-primary.read{
     font-size: 12px;
+}
+.smalltxt{
+    font-size:11px;
+    font-weight: 600;
+}
+.endcomponents{
+    margin-top: 15px;
+}
+.morezindex{
+    z-index:9;
+    color:antiquewhite;
+    left: 91%!important
 }

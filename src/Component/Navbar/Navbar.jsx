@@ -15,15 +15,15 @@ export default class Navbar extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item"><Link className="nav-link active" aria-current="page" to="/">Home</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/business">Business</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/entertainment">Entertainment</Link></li> 
-                    <li className="nav-item"><Link className="nav-link" to="/general">General</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/health">Health</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/science">Science</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/technology">Technology</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/sports">Sports</Link></li>
+                    <li className="nav-item"><Link className="nav-link active navpop" aria-current="page" to="/">Home</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/about">About</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/business">Business</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/entertainment">Entertainment</Link></li> 
+                    <li className="nav-item"><Link className="nav-link navpop" to="/general">General</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/health">Health</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/science">Science</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/technology">Technology</Link></li>
+                    <li className="nav-item"><Link className="nav-link navpop" to="/sports">Sports</Link></li>
                 </ul>
                 <form className="d-flex" role="search">
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

@@ -25,7 +25,7 @@
     margin-left: -1px; 
     gap: 30px;
     justify-items:center;
-    
+    /* background-color: aqua; */
 }
 .newsitemcontainer{
     width: max-content;

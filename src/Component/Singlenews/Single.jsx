@@ -1,3 +1,70 @@
+import React from 'react'
+import './Single.css'
+import { loremIpsum } from 'lorem-ipsum';
+import { Link } from 'react-router-dom';
+
+export default function Single() {
+  const data = JSON.parse(localStorage.getItem('newsData'))
+  console.log(data)
+  // const lorem = loremIpsum({             
+  //   count: 3, // Number of "words", "sentences", or "paragraphs"
+  //   units: 'paragraphs', // Generate "paragraphs" of Lorem Ipsum text
+  //   format: 'html', // Return the generated text as HTML
+  // });
+  const loremContent = loremIpsum({
+    count: 8,
+    units: 'paragraphs',
+    sentenceLowerBound: 10,
+    sentenceUpperBound: 15,
+    paragraphLowerBound: 5,
+    paragraphUpperBound: 9,
+  });
+  return (
+      <>
+
+        {data && (<div className="singlecontainer">
+          <div className="singlewrap">
+          <h1 className="newstitle"><strong>NewsFlix </strong>- Top Headlines</h1>
+          <h1 className="singletitle">{data.newstitle}</h1>
+          <div className="singleimg">
+            <img src={data.newsimg} alt="" className="singleimgitem" />
+          </div>
+          <div className="singletxtcontainer">
+            <div className="datetxt">
+              <span className="datetxt">By {data.author} on {new Date(data.date).toDateString()},{new Date(data.date).toTimeString().slice(0,12)}</span>
+            </div>
+            <div className="singledesc">
+            <span className="singledesctxt">{data.newsdec}</span>
+            </div>
+            <div className="singlecont">
+                <span className="singleconttxt">{data.newscontent}
+                                          <code>The NEWS API is allowing me to fetch only this much 
+                                            text from the article.so its a limitation.
+                                            To read more content about the news just click on the button beside 
+                                            read more which will redirect you to the main website were
+                                            the news is published.
+                                            </code>{loremContent}</span>
+
+          </div>
+              <div className='singlevisit'>
+              <span><strong>Visit this website for <code>Detailed</code> infomation</strong>  </span>
+              <div className="singlewebsitebtn">
+                <Link to={data.newsurl} target='blank' className="btn btn-warning read ">{data.channel}</Link>
+              </div>
+              </div>
+            </div>
+          {/* <button className="btn btn-warning backhome">
+            Back
+          </button> */}
+          </div>
+        </div>)}
+
+      </>
+    )
+}
+
+
+
 // import React, { Component } from 'react'
 // import './Single.css'
 // import News from '../News/News'
@@ -49,12 +116,3 @@
 //     )
 //   }
 // }
-import React from 'react'
-
-export default function Single(props) {
-  console.log(props.data)
-  return (
-    <div>{props.data}</div>
-    
-  )
-}

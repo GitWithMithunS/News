@@ -2,9 +2,26 @@
     width: 100%;
     position: fixed;
     z-index: 5;
+    transition: 0.4s;
    
 }
 .nav{
     background-color:#f3cf87 ;
     height: 50px;
+}
+.navpop:hover{
+    transform: scale(1.05);
+    font-weight: 500;
+    color: rgb(61, 47, 13);
+    border: 1px solid black;
+    border-radius: 20px;
+    -webkit-box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
+    -moz-box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
+    box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
+
+}
+.read{
+    width: max-content;
+    margin-top:20px ;
+    color: #f3cf87;
 }
