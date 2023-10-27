@@ -33,6 +33,7 @@
     -moz-box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
     box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
     margin:10px 0px;
+    transition: 0.4s;
 }
 h1{
     font-size: 50px;
@@ -43,4 +44,7 @@ h1{
     justify-content: space-between;
     margin: 50px 0px;
 
+}
+.btn.btn-warning:hover{
+    transform: scale(1.2);
 }

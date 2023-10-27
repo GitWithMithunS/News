@@ -5,6 +5,8 @@ import Loading from '../Loading/Loading';
 import PropTypes from 'prop-types'
 
 
+
+
 export default class News extends Component {
   static defaultProps = {
     country : 'in',
@@ -83,15 +85,19 @@ export default class News extends Component {
           {this.state.loading && <Loading />}
           <div className="newswrap">
           {!this.state.loading && this.state.articles.map((element)=>{
-            console.log(element)
+            // console.log(element)
             return <div className="newsitemcontainer">
               <Newsitem title={element.title?element.title.slice(0):''} 
                         description={element.description?element.description.slice(0,95):''} 
                         imgurl={element.urlToImage?element.urlToImage:'https://ichef.bbci.co.uk/news/1024/branded_news/1809A/production/_131485489_gettyimages-1636801385-1.jpg'}  
-                        newsurl={element.url}/>
+                        newsurl={element.url}
+                        author={element.source.name}
+                        content= {element.content}/>
             </div>
             })}
           </div>
+      
+        
           <div className="container nxtprev">
           <button disabled={this.state.page<=1} type="button" className="btn btn-warning" onClick={this.handelprevclick}><strong>&larr; Previous</strong></button>
           <button type="button" disabled={this.state.page+1 > Math.ceil(this.state.totalarticles/this.props.pagesize)} className="btn btn-warning" onClick={this.handelnxtclick}><strong>Next &rarr;</strong></button>

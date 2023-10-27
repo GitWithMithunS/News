@@ -2,10 +2,9 @@
     width: 100%;
     position: fixed;
     z-index: 5;
+   
 }
 .nav{
     background-color:#f3cf87 ;
     height: 50px;
-  
-    
 }

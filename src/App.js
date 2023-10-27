@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from './Component/Navbar/Navbar'
 import News from './Component/News/News'
 import { BrowserRouter,Route,Routes } from "react-router-dom"
+import Single from './Component/Singlenews/Single'
 
 export default class App extends Component {
   render() {
@@ -11,17 +12,18 @@ export default class App extends Component {
       <Navbar/>      
       
         <Routes>
-          <Route path="/" ><News pagesize={18} country='in' category='entertainment'/></Route>
-          <Route path="/business" ><News pagesize={18} country='in' category='business'/></Route> 
-          <Route path="/entertainment" ><News pagesize={18} country='in' category='entertainment'/></Route>
-          <Route path="/general" ><News pagesize={18} country='in' category='general'/></Route> 
-          <Route path="/health " ><News pagesize={18} country='in' category='health'/></Route>
-          <Route path="/science" ><News pagesize={18} country='in' category='science'/></Route> 
-          <Route path="/technology " ><News pagesize={18} country='in' category='technology'/></Route>
-          <Route path="/sports" ><News pagesize={18} country='in' category='sports'/></Route> 
+          <Route exact path="/" element={<News key='all' pagesize={18} country='in' category=''/>}/>
+          <Route exact path="/business" element={<News key='business' pagesize={18} country='in' category='business'/>}/>
+          <Route exact path="/entertainment" element={<News key='' pagesize={18} country='in' category='entertainment'/>}/>
+          <Route exact path="/general" element={<News key='entertainment' pagesize={18} country='in' category='general'/>}/>
+          <Route exact path="/health" element={<News  key='health'pagesize={18} country='in' category='health'/>}/>
+          <Route exact path="/science" element={<News key='science' pagesize={18} country='in' category='science'/>}/>
+          <Route exact path="/technology" element={<News key='technology' pagesize={18} country='in' category='technology'/>}/>
+          <Route exact path="/sports" element={<News key='sports' pagesize={18} country='in' category='sports'/>}/>
+          <Route exact path="/single" element={<Single />}/>
         </Routes>
 
-      </>s
+      </>
       </BrowserRouter>
     )
   }
