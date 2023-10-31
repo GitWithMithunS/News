@@ -38,11 +38,11 @@ export default class Newsitem extends Component {
               <h5 className="card-title"><strong>{title}</strong></h5>        {/*  after destructuring title and description passing it as props here */}
               <p className="card-text">{description.slice(0,95)}...</p>
               
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger morezindex">
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger morezindex">
               {channel}</span>
 
               <div className="endcomponents">
-                <p className="card-text"><small className="text-body-secondary smalltxt">By {author} on {new Date(date).toDateString()},{new Date(date).toTimeString().slice(0,12)} </small></p>
+                <p className="card-text"><small className="text-body-secondary smalltxt">By {author} on {new Date(date).toDateString()}-{new Date(date).toTimeString().slice(0,12)} </small></p>
                 <div className="button">
                   <button onClick={this.thisState} className="btn btn-primary read ">
                   <Link to='/single' target='blank' >Read More</Link></button>

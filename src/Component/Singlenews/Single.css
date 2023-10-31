@@ -27,7 +27,7 @@
     -webkit-box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
     -moz-box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
     box-shadow: 13px 13px 13px 0px rgba(145,127,145,1);
-    margin:10px 0px;
+    margin:20px 0px;
     
 }
 .singleimg:hover{
@@ -41,25 +41,26 @@
 }
 .datetxt{
     display: flex;
+    margin: 5px 0px;
     justify-content: right;
+    color: rgb(231, 140, 22);
+    cursor: grab;
+    font-style: oblique;
 }
 .singledesc{
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     
 }
 .singlecont{
     margin-bottom: 40px;
 }
-.singlevisit{
+.singlevisitweb{
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     cursor:alias
-}
-.singlewebsitebtn{
-
 }

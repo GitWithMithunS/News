@@ -2,6 +2,7 @@ import React from 'react'
 import './Single.css'
 import { loremIpsum } from 'lorem-ipsum';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 export default function Single() {
   const data = JSON.parse(localStorage.getItem('newsData'))
@@ -21,7 +22,7 @@ export default function Single() {
   });
   return (
       <>
-
+        <Navbar/>
         {data && (<div className="singlecontainer">
           <div className="singlewrap">
           <h1 className="newstitle"><strong>NewsFlix </strong>- Top Headlines</h1>
@@ -31,7 +32,7 @@ export default function Single() {
           </div>
           <div className="singletxtcontainer">
             <div className="datetxt">
-              <span className="datetxt">By {data.author} on {new Date(data.date).toDateString()},{new Date(data.date).toTimeString().slice(0,12)}</span>
+              <span className="datetxt">By {data.author} on {new Date(data.date).toDateString()}-{new Date(data.date).toTimeString().slice(0,12)}</span>
             </div>
             <div className="singledesc">
             <span className="singledesctxt">{data.newsdec}</span>
@@ -41,12 +42,13 @@ export default function Single() {
                                           <code>The NEWS API is allowing me to fetch only this much 
                                             text from the article.so its a limitation.
                                             To read more content about the news just click on the button beside 
-                                            read more which will redirect you to the main website were
+                                            read more or the button given at the end in this page
+                                             which will redirect you to the main website were
                                             the news is published.
                                             </code>{loremContent}</span>
 
           </div>
-              <div className='singlevisit'>
+              <div className='singlevisitweb'>
               <span><strong>Visit this website for <code>Detailed</code> infomation</strong>  </span>
               <div className="singlewebsitebtn">
                 <Link to={data.newsurl} target='blank' className="btn btn-warning read ">{data.channel}</Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from './Component/Navbar/Navbar'
 import News from './Component/News/News'
+import Home from './Component/Home/Home'
 import { BrowserRouter,Route,Routes } from "react-router-dom"
 import Single from './Component/Singlenews/Single'
 
@@ -9,10 +10,10 @@ export default class App extends Component {
     return (
       <BrowserRouter >
       <>
-      <Navbar/>      
       
+        
         <Routes>
-          <Route exact path="/" element={<News key='all' pagesize={18} country='in' category=''/>}/>
+          <Route exact path="/" element={<Home key='all' pagesize={100} country='in' category=''/>}/>
           <Route exact path="/business" element={<News key='business' pagesize={18} country='in' category='business'/>}/>
           <Route exact path="/entertainment" element={<News key='' pagesize={18} country='in' category='entertainment'/>}/>
           <Route exact path="/general" element={<News key='entertainment' pagesize={18} country='in' category='general'/>}/>
