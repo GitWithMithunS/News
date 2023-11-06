@@ -34,83 +34,68 @@ export default class News extends Component {
      document.title = `${this.capitalizefn(this.props.category)}-NewsFlix `
     }
     
-//   async updatenews() {
-//     console.log('cdm')       //note: componentdidmount function always runs after render() is executed.    
-//     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76c7670f33fc46139a8d8a424657369d&page=${this.state.page} &pagesize=${this.props.pagesize}`
-//     this.setState({loading:true})
-//     let data = await fetch(url);
-//     let parseddata = await data.json()
-//     console.log(parseddata)
-//     this.setState({
-//       articles:parseddata.articles,
-//       totalarticles:parseddata.totalResults,
-//       loading:false
-//     })
-//   }
-
-//   handelprevclick = async () =>{
-//     if (this.state.page > 1) {
-//     this.setState({
-//       page : this.state.page -1
-//     })
-//     this.updatenews()
-//   }}
-//   handelnxtclick = async () =>{
-//     if(!(this.state.page+1 > Math.ceil(this.state.totalarticles/this.props.pagesize))){
-//     this.setState({
-//       page : this.state.page +1
-//     })
-//     this.updatenews()
-//   }
-// }
-
-
-  async componentDidMount(){
+    
+    
+    async componentDidMount(){
+      this.props.setprogress(10)
     console.log('cdm')       //note: componentdidmount function always runs after render() is executed.    
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76c7670f33fc46139a8d8a424657369d&page=1&pagesize=${this.props.pagesize}`
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.newskey}&page=1&pagesize=${this.props.pagesize}`
     this.setState({loading:true})
+    this.props.setprogress(10)
     let data = await fetch(url);
+    this.props.setprogress(30)
     let parseddata = await data.json()
+    this.props.setprogress(60)
     console.log(parseddata)
     this.setState({
       articles:parseddata.articles,
       totalarticles:parseddata.totalResults,
       loading:false
     })
+    this.props.setprogress(100)
   }
-
+  
   handelprevclick = async () => {
+    this.props.setprogress(10)
     if (this.state.page > 1) {
-    let url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76c7670f33fc46139a8d8a424657369d&page=${this.state.page - 1}&pagesize=${this.props.pagesize}`
+      let url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.newskey}&page=${this.state.page - 1}&pagesize=${this.props.pagesize}`
     this.setState({loading:true})
+    this.props.setprogress(30)
     let data = await fetch(url);
+    this.props.setprogress(50)
     let parseddata = await data.json()
     console.log(parseddata)
     this.setState({
-     page:this.state.page -1,
-     articles:parseddata.articles,
+      page:this.state.page -1,
+      articles:parseddata.articles,
      loading:false
     })
+    this.props.setprogress(100)
   }}
 
   handelnxtclick = async () => {
+    this.props.setprogress(10)
     if(!(this.state.page+1 > Math.ceil(this.state.totalarticles/this.props.pagesize))){
-       let url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76c7670f33fc46139a8d8a424657369d&page=${this.state.page + 1}&pagesize=${this.props.pagesize}`
-    this.setState({loading:true})
-    let data = await fetch(url);
-    let parseddata = await data.json()
+      let url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.newskey}&page=${this.state.page + 1}&pagesize=${this.props.pagesize}`
+      this.setState({loading:true})
+      this.props.setprogress(30)
+      let data = await fetch(url);
+      this.props.setprogress(40)
+      let parseddata = await data.json()
+      this.props.setprogress(50)
     console.log(parseddata)
     this.setState({
-     page:this.state.page +1,
-     articles:parseddata.articles,
-     loading:false
+      page:this.state.page +1,
+      articles:parseddata.articles,
+      loading:false
     })
+    this.props.setprogress(100)
   }
-  }
+}
 
-  render() {
-    return (
-      <>
+render() {
+  return (
+    <>
       <Navbar/>
       <div className="news">
         <div className="newscontainer">
@@ -119,7 +104,7 @@ export default class News extends Component {
           <div className="newswrap">
           {!this.state.loading && this.state.articles.map((element)=>{                                          
             // console.log(element) it will have all the values or objects present in the this.state.article
-            return <div className="newsitemcontainer">
+            return <div className="newsitemcontainer" key={element.url}>
               <Newsitem title={element.title?element.title.slice(0):'Title is not mentioned by the Publisher'} 
                         description={element.description?element.description:'Their is no description provided by the news channel or author'} 
                         imgurl={element.urlToImage?element.urlToImage:'https://ichef.bbci.co.uk/news/1024/branded_news/1809A/production/_131485489_gettyimages-1636801385-1.jpg'}  
@@ -146,3 +131,32 @@ export default class News extends Component {
 
 
 
+
+//   async updatenews() {       //A BETTER AND SHORTER VERSION OF THE NEXT AND PREVIOUS PAGE
+//     console.log('cdm')       //note: componentdidmount function always runs after render() is executed.    
+//     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.newskey}&page=${this.state.page} &pagesize=${this.props.pagesize}`
+//     this.setState({loading:true})
+//     let data = await fetch(url);
+//     let parseddata = await data.json()
+//     console.log(parseddata)
+//     this.setState({
+//       articles:parseddata.articles,
+//       totalarticles:parseddata.totalResults,
+//       loading:false
+//     })
+//   }
+//   handelprevclick = async () =>{
+//     if (this.state.page > 1) {
+//     this.setState({
+//       page : this.state.page -1
+//     })
+//     this.updatenews()
+//   }}
+//   handelnxtclick = async () =>{
+//     if(!(this.state.page+1 > Math.ceil(this.state.totalarticles/this.props.pagesize))){
+//     this.setState({
+//       page : this.state.page +1
+//     })
+//     this.updatenews()
+//   }
+// }

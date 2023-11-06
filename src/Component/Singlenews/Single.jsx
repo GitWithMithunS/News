@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 
 export default function Single() {
+ 
   const data = JSON.parse(localStorage.getItem('newsData'))
   console.log(data)
   // const lorem = loremIpsum({             

@@ -4,18 +4,17 @@ import './Home.css'
 import Loading from '../Loading/Loading';
 import PropTypes from 'prop-types'
 import Navbar from '../Navbar/Navbar';
-import { Location} from 'react-router-dom';
 export default class News extends Component {
-//   static defaultProps = {
-//     country : 'in',
-//     pagesize : 18,
-//     category : 'general'
-//   }
-//   static propTypes = {
-//     country : PropTypes.string ,
-//     pagesize : PropTypes.number , 
-//     category : PropTypes.string,
-//   }
+  static defaultProps = {
+    country : 'in',
+    pagesize : 18,
+    topic : 'general'
+  }
+  static propTypes = {
+    country : PropTypes.string ,
+    pagesize : PropTypes.number , 
+    topic : PropTypes.string,
+  }
   constructor(props){
     console.log('i am a construct')
       super(props);
@@ -25,49 +24,47 @@ export default class News extends Component {
       page:1,  
       topic:'general'
      }
-     let searchtxtfromnavbar = JSON.parse(localStorage.getItem('searchData'))
-     console.log(searchtxtfromnavbar)
-     if(searchtxtfromnavbar){
-        this.setState({
-          topic:searchtxtfromnavbar
-        })
-      }
     } 
     async componentDidUpdate(prevProps, prevState) {
       if (this.state.topic !== prevState.topic) {
+        console.log('Current topic: ', this.state.topic);
+        console.log('Previous topic: ', prevState.topic);
         let urlall = `https://newsapi.org/v2/everything?q=${this.state.topic}&apiKey=76c7670f33fc46139a8d8a424657369d&page=1&pagesize=${this.props.pagesize}`
         console.log(urlall)
         this.setState({loading:true})
-    let data = await fetch(urlall);
-    let parseddata = await data.json()
-    this.setState({
-      allarticles:parseddata.articles,
+        let data = await fetch(urlall);
+        let parseddata = await data.json()
+        this.setState({
+          allarticles:parseddata.articles,
       totalarticles:parseddata.totalResults,
       loading:false,
     })
-        // this.setState({loading:true})
-        // fetch(urlall)
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     this.setState({
-        //       allarticles: data.articles,
-        //       totalarticles: data.totalResults,
-        //       loading: false,
-        //     });
-        //   });
       }
      }
   async componentDidMount(){   
+    this.props.setprogress(15)
     let urlall = `https://newsapi.org/v2/everything?q=${this.state.topic}&apiKey=76c7670f33fc46139a8d8a424657369d&page=1&pagesize=${this.props.pagesize}`
     console.log(urlall)
     this.setState({loading:true})
+    this.props.setprogress(35)
     let data = await fetch(urlall);
+    this.props.setprogress(45)
+    let searchtxtfromnavbar = JSON.parse(localStorage.getItem('searchData'))
+    this.props.setprogress(65)
+    console.log(searchtxtfromnavbar)
+    if(searchtxtfromnavbar){
+       this.setState({
+         topic:searchtxtfromnavbar
+       })
+     }
+     this.props.setprogress(85)
     let parseddata = await data.json()
     this.setState({
       allarticles:parseddata.articles,
       totalarticles:parseddata.totalResults,
       loading:false,
     })
+    this.props.setprogress(100)
   }
 
   // handelprevclick = async () => {
@@ -107,7 +104,7 @@ export default class News extends Component {
           {this.state.loading && <Loading />}
           <div className="newswrap">
           {!this.state.loading && this.state.allarticles && this.state.allarticles.map((element)=>{
-            return <div className="newsitemcontainer">
+            return <div className="newsitemcontainer" key={element.url}>
               <Newsitem title={element.title?element.title.slice(0):'Title is not mentioned by the Publisher'} 
                         description={element.description?element.description:'Their is no description provided by the news channel or author'} 
                         imgurl={element.urlToImage?element.urlToImage:'https://ichef.bbci.co.uk/news/1024/branded_news/1809A/production/_131485489_gettyimages-1636801385-1.jpg'}  

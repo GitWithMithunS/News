@@ -8,11 +8,11 @@ export default class Navbar extends Component {
         this.state = {
           searchTerm: ''
         };
-        localStorage.setItem('searchData' , JSON.stringify(this.state.searchTerm))
-      }
+    }
     
-      handleSearchChange = (event) => {
+    handleSearchChange = (event) => {
         this.setState({ searchTerm: event.target.value });
+        localStorage.setItem('searchData' , JSON.stringify(this.state.searchTerm))
       };
     
       handleSearchSubmit = (event) => {

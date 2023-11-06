@@ -17,7 +17,7 @@ export default class Newsitem extends Component {
       date : `${date}`,
       channel : `${channel}`,  
          };
-         localStorage.setItem('newsData' , JSON.stringify(data))
+         localStorage.setItem('newsData', JSON.stringify(data))
         }
     
         
